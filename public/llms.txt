@@ -1,0 +1,35 @@
+# Alonso & Campos Advisors
+
+> Firma de asesoramiento estratégico, tecnológico y de innovación. León, Castilla y León, España.
+
+Alonso & Campos Advisors es una firma española constituida por tres socios fundadores con trayectoria complementaria en gobernanza, transformación digital y relaciones institucionales. Acompañan a organizaciones —empresas, fundaciones, administraciones públicas y entidades del tercer sector— en la comprensión y adopción responsable de tecnologías emergentes, con énfasis en inteligencia artificial, contribuyendo a un desarrollo económico y social sostenible.
+
+## Páginas
+
+- [Inicio](https://alonsoycamposadvisors.com/): Propuesta de valor, cuatro líneas de servicio, perfil del cliente tipo y equipo fundador.
+- [Nosotros](https://alonsoycamposadvisors.com/nosotros/): Misión, visión, valores de la firma y biografías de los tres socios fundadores.
+- [Portafolio](https://alonsoycamposadvisors.com/portafolio/): Detalle de las cuatro líneas de trabajo y compromiso con territorios SIPAM.
+- [Contacto](https://alonsoycamposadvisors.com/contacto/): Dirección de correo e información para iniciar una conversación.
+
+## Líneas de trabajo
+
+- **I. Asesoría tecnológica y gobernanza de IA**: evaluación de sistemas de IA, marcos de gobernanza algorítmica, ética, gestión de riesgos y cumplimiento del AI Act europeo.
+- **II. Plataformas y soluciones digitales**: asesoría en diseño de software, prototipos y MVPs, análisis de modelos de IA aplicada y seguimiento post-implementación.
+- **III. Datos, observatorios y conocimiento**: estructuras de bases de datos, observatorios digitales sectoriales, soluciones de información especializadas y gestión avanzada del conocimiento.
+- **IV. Proyectos I+D+i**: identificación, formulación, articulación y monitorización de proyectos competitivos en convocatorias nacionales (CDTI, Red.es, FEDER) e internacionales (Horizon Europe).
+
+## Compromiso social — SIPAM
+
+La firma incorpora expresamente en su objeto social el desarrollo de proyectos tecnológicos para territorios rurales, zonas de montaña y Sistemas Importantes del Patrimonio Agrícola Mundial (SIPAM) de la FAO: plataformas de seguimiento, repositorios de datos patrimoniales y herramientas de gestión del conocimiento territorial.
+
+## Equipo fundador
+
+- **Antonio Alonso Sánchez** — Socio Fundador. Desarrollo organizacional, innovación y planificación estratégica.
+- **Erica Wurzba Campos** — Socia Fundadora. Diseño sistémico, desarrollo de liderazgo y gobernanza.
+- **José Eduardo Campos** — Socio Fundador. Transformación digital, diseño sistémico e inteligencia artificial.
+
+## Contacto
+
+- Email: info@alonsoycamposadvisors.com
+- Sede: León, Castilla y León, España
+- Web: https://alonsoycamposadvisors.com/

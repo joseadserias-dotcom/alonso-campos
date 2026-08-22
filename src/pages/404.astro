@@ -1,0 +1,111 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// GitHub Pages sirve un único /404.html para todo el sitio, también bajo /en/.
+// Por eso esta página es bilingüe y no hay variante en src/pages/en/.
+---
+<Layout
+  title="Página no encontrada"
+  description="La página que buscas no existe o ha cambiado de dirección."
+  noindex
+>
+
+  <section class="page-header">
+    <div class="container">
+      <p class="eyebrow" style="color:var(--gold)">Error 404</p>
+      <h1 class="display-title" style="color:var(--white);">Esta página<br><em style="color:var(--gold);">no existe</em></h1>
+      <p class="nf-text">
+        Puede que la dirección haya cambiado o que el enlace esté mal escrito.
+        Desde aquí puedes volver al inicio o escribirnos.
+      </p>
+      <p class="nf-text" lang="en">
+        This page doesn’t exist. The address may have changed or the link may be mistyped.
+      </p>
+      <div class="nf-actions">
+        <a class="btn btn-gold" href="/">Volver al inicio</a>
+        <a class="btn btn-light" href="/en/">English home</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--white);">
+    <div class="container">
+      <div class="nf-grid">
+        <div>
+          <h2 class="nf-heading">Páginas principales</h2>
+          <ul class="nf-links">
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/nosotros/">Nosotros</a></li>
+            <li><a href="/portafolio/">Portafolio</a></li>
+            <li><a href="/contacto/">Contacto</a></li>
+            <li><a href="/privacidad/">Política de privacidad</a></li>
+          </ul>
+        </div>
+        <div lang="en">
+          <h2 class="nf-heading">Main pages</h2>
+          <ul class="nf-links">
+            <li><a href="/en/">Home</a></li>
+            <li><a href="/en/nosotros/">About</a></li>
+            <li><a href="/en/portafolio/">Portfolio</a></li>
+            <li><a href="/en/contacto/">Contact</a></li>
+            <li><a href="/en/privacidad/">Privacy policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .page-header {
+    background: var(--night);
+    padding: 5rem 0 4rem;
+    background-image: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(61,90,128,0.3) 0%, transparent 70%);
+  }
+  .nf-text {
+    color: rgba(255,255,255,0.65);
+    max-width: 520px;
+    margin-top: 1rem;
+    line-height: 1.75;
+  }
+  .nf-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 2.25rem;
+  }
+  .btn-light {
+    background: transparent;
+    color: var(--white);
+    border: 1.5px solid rgba(255,255,255,0.45);
+    text-decoration: none;
+  }
+  .btn-light:hover { background: var(--white); color: var(--night); }
+  .btn-gold { text-decoration: none; }
+
+  .nf-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+  .nf-heading {
+    font-family: var(--ff-display);
+    font-size: 1.15rem;
+    color: var(--night);
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .nf-links li { margin-bottom: 0.6rem; }
+  .nf-links a {
+    font-size: 0.95rem;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .nf-links a:hover { color: var(--slate); }
+
+  @media (max-width: 700px) {
+    .nf-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+</style>

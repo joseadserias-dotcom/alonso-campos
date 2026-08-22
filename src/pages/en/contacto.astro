@@ -1,0 +1,146 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { EMAIL, WHATSAPP_VISIBLE, whatsappHref } from '../../lib/contacto';
+---
+<Layout title="Contact" description="Contact Alonso & Campos Advisors. León, Spain." lang="en">
+
+  <section class="page-header">
+    <div class="container">
+      <p class="eyebrow" style="color:var(--gold)">Let's talk</p>
+      <h1 class="display-title" style="color:var(--white);">Every project begins<br><em style="color:var(--gold);">with a conversation</em></h1>
+      <p style="color:rgba(255,255,255,0.65);max-width:520px;margin-top:1rem;line-height:1.75;">
+        Tell us about your challenge. No commitment — we assess the fit and get back to you within 48 hours.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--white);">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- CONTACT -->
+        <div class="contact-main">
+          <h2 class="contact-title">Write to us</h2>
+          <p class="contact-lead">
+            Tell us by email who you are, the challenge you are facing and what you expect
+            from an advisor. With that we can assess the fit and reply with something useful.
+          </p>
+
+          <div class="mail-block">
+            <span class="mail-label">Email</span>
+            <a class="mail-address" href={`mailto:${EMAIL}`}>{EMAIL}</a>
+            <button type="button" class="copy-btn" id="copyBtn" data-email={EMAIL} hidden>
+              Copy address
+            </button>
+            <p class="copy-msg" id="copyMsg" role="status" aria-live="polite"></p>
+          </div>
+
+          <div class="mail-block">
+            <span class="mail-label">WhatsApp</span>
+            <a
+              class="mail-address"
+              href={whatsappHref()}
+              target="_blank"
+              rel="noopener noreferrer"
+            >{WHATSAPP_VISIBLE}</a>
+          </div>
+
+          <div class="contact-meta">
+            <span class="contact-label">Headquarters</span>
+            <span>León, Castilla y León, Spain</span>
+          </div>
+        </div>
+
+        <!-- SIDEBAR -->
+        <aside class="contact-aside">
+          <div class="aside-card">
+            <h3>What happens next?</h3>
+            <div class="next-step">
+              <div class="step-dot">1</div>
+              <div>
+                <strong>Your email reaches us</strong>
+                <p>It is read by all three founding partners, not an assistant.</p>
+              </div>
+            </div>
+            <div class="next-step">
+              <div class="step-dot">2</div>
+              <div>
+                <strong>We reply within 48 h</strong>
+                <p>With an initial assessment and, if there's a fit, a meeting proposal.</p>
+              </div>
+            </div>
+            <div class="next-step">
+              <div class="step-dot">3</div>
+              <div>
+                <strong>First conversation</strong>
+                <p>No charge. We explore the project together before any formal proposal.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="aside-card aside-quote">
+            <p>"Where decisions converge to transform."</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<script>
+  // The button only appears if the clipboard is actually available:
+  // without JS or a secure context, the address stays visible and selectable.
+  const copyBtn = document.getElementById('copyBtn') as HTMLButtonElement | null;
+  const copyMsg = document.getElementById('copyMsg');
+
+  if (copyBtn && copyMsg && window.isSecureContext && navigator.clipboard) {
+    copyBtn.hidden = false;
+    copyBtn.addEventListener('click', async () => {
+      const address = copyBtn.dataset.email ?? '';
+      try {
+        await navigator.clipboard.writeText(address);
+        copyMsg.textContent = 'Address copied to clipboard.';
+      } catch {
+        copyMsg.textContent = 'Could not copy. Please select the address and copy it manually.';
+      }
+      window.setTimeout(() => { copyMsg.textContent = ''; }, 4000);
+    });
+  }
+</script>
+
+<style>
+  .page-header {
+    background: var(--night);
+    padding: 5rem 0 4rem;
+    background-image: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(61,90,128,0.3) 0%, transparent 70%);
+  }
+  .contact-grid { display: grid; grid-template-columns: 1fr 380px; gap: 4rem; align-items: start; }
+  .contact-title { font-family: var(--ff-display); font-size: 1.5rem; color: var(--night); margin-bottom: 1rem; }
+  .contact-lead { color: var(--text); line-height: 1.8; max-width: 48ch; margin-bottom: 2.5rem; }
+  .mail-block + .mail-block { margin-top: 1.25rem; }
+  .mail-block { background: var(--ivory); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 2px; padding: 2rem 2.25rem; }
+  .mail-label { display: block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-text); margin-bottom: 0.6rem; }
+  .mail-address { display: inline-block; font-family: var(--ff-display); font-size: clamp(1.25rem, 3vw, 1.75rem); line-height: 1.3; color: var(--night); text-decoration: none; border-bottom: 2px solid var(--gold); word-break: break-word; }
+  .mail-address:hover { color: var(--slate); }
+  .copy-btn { display: block; margin-top: 1.5rem; font-family: var(--ff-body); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.04em; padding: 0.55rem 1.15rem; background: transparent; color: var(--night); border: 1.5px solid var(--night); border-radius: 2px; cursor: pointer; transition: all 0.2s; }
+  .copy-btn:hover { background: var(--night); color: var(--white); }
+  .copy-msg { font-size: 0.825rem; color: var(--muted); margin-top: 0.75rem; min-height: 1.2em; }
+  .contact-meta { display: flex; flex-direction: column; gap: 0.15rem; margin-top: 2rem; }
+
+  .aside-card { background: var(--ivory); border: 1px solid var(--border); padding: 2rem; margin-bottom: 1.5rem; border-radius: 2px; }
+  .aside-card h3 { font-family: var(--ff-display); font-size: 1.1rem; color: var(--night); margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border); }
+  .contact-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-text); }
+  .contact-meta span:not(.contact-label) { font-size: 0.9rem; color: var(--text); }
+  .next-step { display: flex; gap: 1rem; margin-bottom: 1.25rem; align-items: flex-start; }
+  .next-step:last-child { margin-bottom: 0; }
+  .step-dot { width: 28px; height: 28px; background: var(--night); color: var(--gold); border-radius: 50%; font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+  .next-step strong { display: block; font-size: 0.875rem; color: var(--night); margin-bottom: 0.2rem; }
+  .next-step p { font-size: 0.825rem; color: var(--muted); line-height: 1.5; }
+  .aside-quote { background: var(--night); border: none; text-align: center; }
+  .aside-quote p { font-family: var(--ff-display); font-style: italic; color: var(--gold); font-size: 1.05rem; line-height: 1.5; margin: 0; }
+
+  @media (max-width: 900px) {
+    .contact-grid { grid-template-columns: 1fr; }
+  }
+</style>

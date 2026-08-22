@@ -1,0 +1,451 @@
+---
+import { EMAIL, whatsappHref } from '../lib/contacto';
+
+export interface Props {
+  title: string;
+  description?: string;
+  lang?: 'es' | 'en';
+  noindex?: boolean;
+}
+const { title, description = 'Asesoramiento estratégico, tecnológico y de innovación. León, España.', lang = 'es', noindex = false } = Astro.props;
+const currentPath = Astro.url.pathname;
+const isEn = lang === 'en';
+const basePath = isEn ? (currentPath.replace(/^\/en/, '') || '/') : currentPath;
+const navBase = isEn ? '/en' : '';
+if (!Astro.site) {
+  throw new Error('astro.config.mjs debe definir `site`: de ahí salen canonical, hreflang y sitemap.');
+}
+const siteOrigin = Astro.site.origin;
+const esHref = `${siteOrigin}${basePath}`;
+const enHref = `${siteOrigin}/en${basePath === '/' ? '/' : basePath}`;
+const canonicalHref = isEn ? enHref : esHref;
+const waSaludo = isEn
+  ? 'Hello, every project begins with a conversation — this is Alonso & Campos https://alonsoycamposadvisors.com/'
+  : 'Hola, cada proyecto comienza con una conversación, somos Alonso & Campos https://alonsoycamposadvisors.com/';
+const sinBarra = (p: string) => (p !== '/' && p.endsWith('/') ? p.slice(0, -1) : p);
+const isActive = (p: string) => sinBarra(basePath) === sinBarra(p);
+---
+<!DOCTYPE html>
+<html lang={lang}>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <title>{title} — Alonso & Campos Advisors</title>
+  {noindex ? (
+    <meta name="robots" content="noindex" />
+  ) : (
+    <>
+      <link rel="canonical" href={canonicalHref} />
+      <link rel="alternate" hreflang="es" href={esHref} />
+      <link rel="alternate" hreflang="en" href={enHref} />
+      <link rel="alternate" hreflang="x-default" href={esHref} />
+    </>
+  )}
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
+  <link rel="preload" href="/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/playfair-display-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <style is:global>
+    @font-face {
+      font-family: 'Inter';
+      src: url('/fonts/inter-latin-wght-normal.woff2') format('woff2');
+      font-weight: 100 900;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Playfair Display';
+      src: url('/fonts/playfair-display-latin-wght-normal.woff2') format('woff2');
+      font-weight: 400 900;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Playfair Display';
+      src: url('/fonts/playfair-display-latin-wght-italic.woff2') format('woff2');
+      font-weight: 400 900;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    :root {
+      --night:      #1A1F2E;
+      --ivory:      #F5F2EC;
+      --gold:       #C8A96E;
+      --gold-text:  #87682A;
+      --slate:      #3D5A80;
+      --white:      #FFFFFF;
+      --text:       #2C2C2C;
+      --muted:      #64697A;
+      --border:     #E5E0D5;
+
+      --ff-display: 'Playfair Display', Georgia, serif;
+      --ff-body:    'Inter', system-ui, sans-serif;
+
+      --max-w: 1160px;
+      --gutter: clamp(1.25rem, 5vw, 3rem);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--ff-body);
+      background: var(--ivory);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 1rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── NAV ─── */
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--night);
+      border-bottom: 1px solid rgba(200,169,110,0.25);
+    }
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+      gap: 2rem;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .nav-logo img {
+      height: 40px;
+      width: auto;
+    }
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .brand-name {
+      font-family: var(--ff-display);
+      font-size: 0.95rem;
+      font-weight: 600;
+      font-variant: small-caps;
+      letter-spacing: 0.04em;
+      color: var(--white);
+    }
+    .brand-sub {
+      font-family: var(--ff-body);
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.72);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--gold); }
+
+    .lang-switcher {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      padding-left: 0.5rem;
+      border-left: 1px solid rgba(255,255,255,0.15);
+    }
+    .lang-switcher a { color: rgba(255,255,255,0.65); transition: color 0.2s; }
+    .lang-switcher a:hover,
+    .lang-switcher a.lang-active { color: var(--gold); }
+    .lang-sep { color: rgba(255,255,255,0.2); }
+
+    .nav-cta {
+      background: var(--gold);
+      color: var(--night) !important;
+      padding: 0.5rem 1.25rem;
+      border-radius: 2px;
+      font-weight: 600 !important;
+    }
+    .nav-cta:hover { background: #d4b87e !important; color: var(--night) !important; }
+
+    /* hamburger */
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.25rem; }
+    .nav-toggle span {
+      display: block; width: 24px; height: 2px;
+      background: var(--white); margin: 5px 0;
+      transition: all 0.3s;
+    }
+
+    /* ─── FOOTER ─── */
+    .site-footer {
+      background: var(--night);
+      color: rgba(255,255,255,0.55);
+      padding: 3rem var(--gutter) 2rem;
+      font-size: 0.875rem;
+    }
+    .footer-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2.5rem;
+    }
+    .footer-brand p { margin-top: 0.75rem; line-height: 1.7; }
+    .footer-col h3 {
+      font-family: var(--ff-display);
+      color: var(--gold);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.5rem; }
+    .footer-col ul a { color: rgba(255,255,255,0.55); transition: color 0.2s; }
+    .footer-col ul a:hover { color: var(--gold); }
+    .footer-bottom {
+      max-width: var(--max-w);
+      margin: 2.5rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .footer-social {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    .social-icon {
+      color: rgba(255,255,255,0.45);
+      transition: color 0.2s;
+      display: inline-flex;
+    }
+    .social-icon:hover { color: var(--gold); }
+
+    /* ─── UTILITIES ─── */
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+    .section { padding: 5rem 0; }
+    .section-sm { padding: 3rem 0; }
+    .eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-text);
+      margin-bottom: 0.75rem;
+    }
+    .display-title {
+      font-family: var(--ff-display);
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      font-weight: 700;
+      color: var(--night);
+      line-height: 1.15;
+    }
+    .display-title em { font-style: italic; color: var(--slate); }
+    .lead {
+      font-size: 1.1rem;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 640px;
+    }
+    .divider {
+      width: 48px; height: 2px;
+      background: var(--gold);
+      margin: 1.5rem 0;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--night);
+      color: var(--white);
+    }
+    .btn-primary:hover { background: var(--slate); }
+    .btn-gold {
+      background: var(--gold);
+      color: var(--night);
+    }
+    .btn-gold:hover { background: #d4b87e; }
+    .btn-outline {
+      background: transparent;
+      color: var(--night);
+      border: 1.5px solid var(--night);
+    }
+    .btn-outline:hover { background: var(--night); color: var(--white); }
+
+    @media (max-width: 768px) {
+      .nav-toggle { display: block; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 68px; left: 0; right: 0;
+        background: var(--night);
+        flex-direction: column;
+        padding: 1.5rem var(--gutter) 2rem;
+        gap: 1.25rem;
+        border-bottom: 1px solid rgba(200,169,110,0.2);
+      }
+      .nav-links.open { display: flex; }
+      .footer-inner { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <img src="/images/logo-62.webp" alt="" width="62" height="70" style="height:40px;width:auto;" />
+      <span class="brand-text">
+        <span class="brand-name">Alonso &amp; Campos</span>
+        <span class="brand-sub">Advisors</span>
+      </span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href={`${navBase}/`} class={isActive('/') ? 'active' : ''}>{isEn ? 'Home' : 'Inicio'}</a></li>
+      <li><a href={`${navBase}/nosotros/`} class={isActive('/nosotros') ? 'active' : ''}>{isEn ? 'About' : 'Nosotros'}</a></li>
+      <li><a href={`${navBase}/portafolio/`} class={isActive('/portafolio') ? 'active' : ''}>{isEn ? 'Portfolio' : 'Portafolio'}</a></li>
+      <li><a href={`${navBase}/contacto/`} class={`nav-cta ${isActive('/contacto') ? 'active' : ''}`}>{isEn ? 'Contact' : 'Contacto'}</a></li>
+      <li class="lang-switcher">
+        <a href={esHref} class={!isEn ? 'lang-active' : ''} hreflang="es">ES</a>
+        <span class="lang-sep">|</span>
+        <a href={enHref} class={isEn ? 'lang-active' : ''} hreflang="en">EN</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <slot />
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand footer-col">
+      <h3>Alonso & Campos Advisors</h3>
+      <p>{isEn
+        ? 'Strategic, technology and innovation advisory. Where decisions converge to transform.'
+        : 'Asesoramiento estratégico, tecnológico y de innovación. Donde convergen decisiones que transforman.'}</p>
+    </div>
+    <div class="footer-col">
+      <h3>{isEn ? 'Navigation' : 'Navegación'}</h3>
+      <ul>
+        <li><a href={`${navBase}/`}>{isEn ? 'Home' : 'Inicio'}</a></li>
+        <li><a href={`${navBase}/nosotros/`}>{isEn ? 'Team & values' : 'Equipo y valores'}</a></li>
+        <li><a href={`${navBase}/portafolio/`}>{isEn ? 'Portfolio' : 'Portafolio'}</a></li>
+        <li><a href={`${navBase}/contacto/`}>{isEn ? 'Contact' : 'Contacto'}</a></li>
+        {/* TODO Aviso legal: crear src/pages/aviso-legal.astro y src/pages/en/aviso-legal.astro
+            y enlazarlos aquí (/aviso-legal/ y /en/aviso-legal/).
+            PENDIENTE DE DATOS: domicilio social, NIF y datos registrales. No redactar sin ellos. */}
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>{isEn ? 'Contact' : 'Contacto'}</h3>
+      <ul>
+        <li><a href={`mailto:${EMAIL}`}>{EMAIL}</a></li>
+        <li>{isEn ? 'León, Castilla y León, Spain' : 'León, Castilla y León, España'}</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Alonso & Campos Advisors S.L. {isEn ? 'All rights reserved.' : 'Todos los derechos reservados.'}</span>
+    <div class="footer-social">
+      <a href="#" aria-label={isEn ? "Alonso & Campos Advisors on YouTube" : "YouTube de Alonso & Campos Advisors"} class="social-icon" rel="noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+      <a href="#" aria-label={isEn ? "Alonso & Campos Advisors on Instagram" : "Instagram de Alonso & Campos Advisors"} class="social-icon" rel="noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<a
+  href={whatsappHref(waSaludo)}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="whatsapp-fab"
+  aria-label={isEn ? "Contact us on WhatsApp" : "Contactar por WhatsApp"}
+>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor" width="28" height="28" aria-hidden="true">
+    <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.655 4.83 1.8 6.86L2 30l7.34-1.773A13.93 13.93 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2Zm0 25.6a11.56 11.56 0 0 1-5.9-1.616l-.422-.252-4.356 1.052 1.082-4.24-.276-.436A11.56 11.56 0 0 1 4.4 16C4.4 9.593 9.593 4.4 16 4.4S27.6 9.593 27.6 16 22.407 27.6 16 27.6Zm6.34-8.67c-.348-.174-2.06-1.016-2.38-1.132-.318-.116-.55-.174-.78.174-.232.348-.896 1.132-1.098 1.364-.202.232-.404.26-.752.086-.348-.174-1.47-.542-2.8-1.726-1.034-.922-1.732-2.06-1.936-2.408-.202-.348-.022-.536.152-.71.156-.155.348-.404.522-.606.174-.202.232-.348.348-.58.116-.232.058-.436-.03-.61-.086-.174-.78-1.88-1.07-2.574-.282-.676-.568-.584-.78-.594l-.664-.012c-.232 0-.61.086-.928.434-.318.348-1.214 1.186-1.214 2.892s1.242 3.354 1.416 3.586c.174.232 2.444 3.732 5.922 5.232.828.358 1.474.572 1.978.732.83.264 1.586.226 2.184.138.666-.1 2.06-.842 2.35-1.656.29-.814.29-1.512.204-1.656-.086-.144-.318-.232-.666-.406Z"/>
+  </svg>
+</a>
+
+<style>
+  .whatsapp-fab {
+    position: fixed;
+    bottom: 1.75rem;
+    right: 1.75rem;
+    z-index: 999;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #25D366;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.22);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .whatsapp-fab:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle?.addEventListener('click', () => links?.classList.toggle('open'));
+</script>
+
+</body>
+</html>
