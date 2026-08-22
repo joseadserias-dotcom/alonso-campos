@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { EMAIL, WHATSAPP_VISIBLE, whatsappHref } from '../../lib/contacto';
+import { EMAIL, WHATSAPP_VISIBLE, whatsappHref, DIRECCION_EN, MAPA_HREF } from '../../lib/contacto';
 ---
 <Layout title="Contact" description="Contact Alonso & Campos Advisors. León, Spain." lang="en">
 
@@ -45,9 +45,14 @@ import { EMAIL, WHATSAPP_VISIBLE, whatsappHref } from '../../lib/contacto';
             >{WHATSAPP_VISIBLE}</a>
           </div>
 
-          <div class="contact-meta">
-            <span class="contact-label">Headquarters</span>
-            <span>León, Castilla y León, Spain</span>
+          <div class="mail-block">
+            <span class="mail-label">Headquarters</span>
+            <a
+              class="mail-address"
+              href={MAPA_HREF}
+              target="_blank"
+              rel="noopener"
+            >{DIRECCION_EN}</a>
           </div>
         </div>
 
@@ -126,12 +131,9 @@ import { EMAIL, WHATSAPP_VISIBLE, whatsappHref } from '../../lib/contacto';
   .copy-btn { display: block; margin-top: 1.5rem; font-family: var(--ff-body); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.04em; padding: 0.55rem 1.15rem; background: transparent; color: var(--night); border: 1.5px solid var(--night); border-radius: 2px; cursor: pointer; transition: all 0.2s; }
   .copy-btn:hover { background: var(--night); color: var(--white); }
   .copy-msg { font-size: 0.825rem; color: var(--muted); margin-top: 0.75rem; min-height: 1.2em; }
-  .contact-meta { display: flex; flex-direction: column; gap: 0.15rem; margin-top: 2rem; }
 
   .aside-card { background: var(--ivory); border: 1px solid var(--border); padding: 2rem; margin-bottom: 1.5rem; border-radius: 2px; }
   .aside-card h3 { font-family: var(--ff-display); font-size: 1.1rem; color: var(--night); margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border); }
-  .contact-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-text); }
-  .contact-meta span:not(.contact-label) { font-size: 0.9rem; color: var(--text); }
   .next-step { display: flex; gap: 1rem; margin-bottom: 1.25rem; align-items: flex-start; }
   .next-step:last-child { margin-bottom: 0; }
   .step-dot { width: 28px; height: 28px; background: var(--night); color: var(--gold); border-radius: 50%; font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }

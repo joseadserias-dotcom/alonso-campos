@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { EMAIL, WHATSAPP_VISIBLE, whatsappHref } from '../lib/contacto';
+import { EMAIL, WHATSAPP_VISIBLE, whatsappHref, DIRECCION_ES, MAPA_HREF } from '../lib/contacto';
 ---
 <Layout title="Contacto" description="Contacta con Alonso & Campos Advisors. León, España.">
 
@@ -45,9 +45,14 @@ import { EMAIL, WHATSAPP_VISIBLE, whatsappHref } from '../lib/contacto';
             >{WHATSAPP_VISIBLE}</a>
           </div>
 
-          <div class="contact-meta">
-            <span class="contact-label">Sede</span>
-            <span>León, Castilla y León, España</span>
+          <div class="mail-block">
+            <span class="mail-label">Sede</span>
+            <a
+              class="mail-address"
+              href={MAPA_HREF}
+              target="_blank"
+              rel="noopener"
+            >{DIRECCION_ES}</a>
           </div>
         </div>
 
@@ -188,13 +193,6 @@ import { EMAIL, WHATSAPP_VISIBLE, whatsappHref } from '../lib/contacto';
     min-height: 1.2em;
   }
 
-  .contact-meta {
-    display: flex;
-    flex-direction: column;
-    gap: 0.15rem;
-    margin-top: 2rem;
-  }
-
   /* ASIDE */
   .aside-card {
     background: var(--ivory);
@@ -210,17 +208,6 @@ import { EMAIL, WHATSAPP_VISIBLE, whatsappHref } from '../lib/contacto';
     margin-bottom: 1.25rem;
     padding-bottom: 0.75rem;
     border-bottom: 1px solid var(--border);
-  }
-  .contact-label {
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold-text);
-  }
-  .contact-meta span:not(.contact-label) {
-    font-size: 0.9rem;
-    color: var(--text);
   }
 
   .next-step {

@@ -1,5 +1,5 @@
 ---
-import { EMAIL, whatsappHref } from '../lib/contacto';
+import { EMAIL, whatsappHref, DIRECCION_ES, DIRECCION_EN, MAPA_HREF } from '../lib/contacto';
 
 export interface Props {
   title: string;
@@ -389,7 +389,7 @@ const isActive = (p: string) => sinBarra(basePath) === sinBarra(p);
       <h3>{isEn ? 'Contact' : 'Contacto'}</h3>
       <ul>
         <li><a href={`mailto:${EMAIL}`}>{EMAIL}</a></li>
-        <li>{isEn ? 'León, Castilla y León, Spain' : 'León, Castilla y León, España'}</li>
+        <li><a href={MAPA_HREF} target="_blank" rel="noopener">{isEn ? DIRECCION_EN : DIRECCION_ES}</a></li>
       </ul>
     </div>
   </div>
