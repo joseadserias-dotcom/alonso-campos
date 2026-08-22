@@ -268,6 +268,10 @@ const isActive = (p: string) => sinBarra(basePath) === sinBarra(p);
       gap: 0.35rem;
     }
     .footer-legal {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
       font-size: 0.8rem;
       color: rgba(255,255,255,0.4);
     }
@@ -276,7 +280,7 @@ const isActive = (p: string) => sinBarra(basePath) === sinBarra(p);
       transition: color 0.2s;
     }
     .footer-legal a:hover { color: var(--gold); }
-    .legal-sep { margin: 0 0.5rem; }
+    .legal-sep { color: rgba(255,255,255,0.25); }
     .footer-social {
       display: flex;
       gap: 1rem;
