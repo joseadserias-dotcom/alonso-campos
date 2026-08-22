@@ -20,8 +20,8 @@ const esHref = `${siteOrigin}${basePath}`;
 const enHref = `${siteOrigin}/en${basePath === '/' ? '/' : basePath}`;
 const canonicalHref = isEn ? enHref : esHref;
 const waSaludo = isEn
-  ? 'Hello, every project begins with a conversation — this is Alonso & Campos https://alonsoycamposadvisors.com/'
-  : 'Hola, cada proyecto comienza con una conversación, somos Alonso & Campos https://alonsoycamposadvisors.com/';
+  ? `Hello, every project begins with a conversation — this is Alonso & Campos ${siteOrigin}/`
+  : `Hola, cada proyecto comienza con una conversación, somos Alonso & Campos ${siteOrigin}/`;
 const sinBarra = (p: string) => (p !== '/' && p.endsWith('/') ? p.slice(0, -1) : p);
 const isActive = (p: string) => sinBarra(basePath) === sinBarra(p);
 ---

@@ -1,6 +1,13 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { EMAIL, DIRECCION_EN } from '../../lib/contacto';
+
+// El dominio sale de `site` en astro.config.mjs, su fuente única, igual que
+// canonical y sitemap. Aquí no se declara: se lee.
+if (!Astro.site) {
+  throw new Error('astro.config.mjs debe definir `site`: de ahí sale el dominio publicado en esta página.');
+}
+const siteOrigin = Astro.site.origin;
 ---
 <Layout
   title="Privacy Policy"
@@ -31,7 +38,7 @@ import { EMAIL, DIRECCION_EN } from '../../lib/contacto';
               <tr><th>Tax ID (CIF)</th><td>Pending registration</td></tr>
               <tr><th>Registered address</th><td>{DIRECCION_EN}</td></tr>
               <tr><th>Email</th><td><a href={`mailto:${EMAIL}`}>{EMAIL}</a></td></tr>
-              <tr><th>Website</th><td>https://alonsoycamposadvisors.com</td></tr>
+              <tr><th>Website</th><td>{siteOrigin}</td></tr>
             </tbody>
           </table>
         </div>
@@ -115,7 +122,7 @@ import { EMAIL, DIRECCION_EN } from '../../lib/contacto';
           </ul>
           <p>
             To exercise your rights, send an email to
-            <a href="mailto:info@alonsoycamposadvisors.com">info@alonsoycamposadvisors.com</a>
+            <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
             indicating the right you wish to exercise and attaching a copy of your identity document.
           </p>
           <p>
