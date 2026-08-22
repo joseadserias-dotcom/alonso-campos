@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { EMAIL, DIRECCION_ES } from '../lib/contacto';
+import { EMAIL, NIF, DIRECCION_ES } from '../lib/contacto';
 
 // El dominio sale de `site` en astro.config.mjs, su fuente única, igual que
 // canonical y sitemap. Aquí no se declara: se lee.
@@ -38,7 +38,7 @@ const siteOrigin = Astro.site.origin;
           <table class="policy-table">
             <tbody>
               <tr><th>Denominación social</th><td>Alonso &amp; Campos Advisors S.L.</td></tr>
-              {/* PENDIENTE: NIF. Sin el dato confirmado la fila no se renderiza. */}
+              <tr><th>NIF</th><td>{NIF}</td></tr>
               <tr><th>Domicilio social</th><td>{DIRECCION_ES}</td></tr>
               <tr><th>Correo electrónico</th><td><a href={`mailto:${EMAIL}`}>{EMAIL}</a></td></tr>
               <tr><th>Sitio web</th><td>{siteOrigin}</td></tr>

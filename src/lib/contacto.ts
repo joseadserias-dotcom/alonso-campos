@@ -1,5 +1,6 @@
-// Datos de contacto de la firma. Fuente única: el Layout y las páginas de
-// contacto los importan de aquí en vez de codificarlos a mano en cada sitio.
+// Datos de contacto e identificación de la firma. Fuente única: el Layout y
+// las páginas que los publican los importan de aquí en vez de codificarlos a
+// mano en cada sitio.
 
 export const EMAIL = 'info@alonsoycamposadvisors.com';
 
@@ -19,6 +20,9 @@ export const whatsappHref = (texto?: string) =>
  */
 export const DIRECCION_ES = 'Calle Santos Ovejero, 1 — 24008 León, España';
 export const DIRECCION_EN = 'Calle Santos Ovejero, 1 — 24008 León, Spain';
+
+/** NIF de la sociedad. Lo publican el aviso legal y la política de privacidad. */
+export const NIF = 'B-88746938';
 
 /** Ficha de la sede en Google Maps. */
 export const MAPA_HREF =
