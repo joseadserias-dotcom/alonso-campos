@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { DIRECCION_EN } from '../../lib/contacto';
+import { EMAIL, DIRECCION_EN } from '../../lib/contacto';
 ---
 <Layout
   title="Privacy Policy"
@@ -30,7 +30,7 @@ import { DIRECCION_EN } from '../../lib/contacto';
               <tr><th>Legal name</th><td>Alonso &amp; Campos Advisors S.L.</td></tr>
               <tr><th>Tax ID (CIF)</th><td>Pending registration</td></tr>
               <tr><th>Registered address</th><td>{DIRECCION_EN}</td></tr>
-              <tr><th>Email</th><td><a href="mailto:info@alonsoycamposadvisors.com">info@alonsoycamposadvisors.com</a></td></tr>
+              <tr><th>Email</th><td><a href={`mailto:${EMAIL}`}>{EMAIL}</a></td></tr>
               <tr><th>Website</th><td>https://alonsoycamposadvisors.com</td></tr>
             </tbody>
           </table>
