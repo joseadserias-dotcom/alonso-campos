@@ -10,14 +10,37 @@ export interface Props {
 const { title, description = 'Asesoramiento estratégico, tecnológico y de innovación. León, España.', lang = 'es', noindex = false } = Astro.props;
 const currentPath = Astro.url.pathname;
 const isEn = lang === 'en';
-const basePath = isEn ? (currentPath.replace(/^\/en/, '') || '/') : currentPath;
 const navBase = isEn ? '/en' : '';
+
+/**
+ * Emparejado ES↔EN de las rutas cuyo slug NO coincide entre idiomas. El resto
+ * de páginas comparten slug y para ellas basta con quitar o poner el prefijo
+ * /en. Esta tabla se CONSULTA: deducir del nombre daría `/en/aviso-legal/`,
+ * que no existe. Al añadir un par asimétrico, declararlo aquí.
+ */
+const SLUG_EN: Record<string, string> = {
+  '/aviso-legal/': '/legal-notice/',
+};
+const SLUG_ES: Record<string, string> = Object.fromEntries(
+  Object.entries(SLUG_EN).map(([es, en]) => [en, es]),
+);
+
+/** Ruta ES de esta página, que es la clave con la que se busca su gemela. */
+const sinPrefijo = isEn ? (currentPath.replace(/^\/en/, '') || '/') : currentPath;
+const basePath = isEn ? (SLUG_ES[sinPrefijo] ?? sinPrefijo) : sinPrefijo;
+
+/** Ruta EN de una ruta ES. Siempre EN, sea cual sea el idioma de la página:
+ *  es la que necesitan hreflang y el conmutador de idioma. */
+const rutaEn = (rutaEs: string) => `/en${SLUG_EN[rutaEs] ?? rutaEs}`;
+
+/** La misma ruta en el idioma de ESTA página, para los enlaces del pie. */
+const enIdioma = (rutaEs: string) => (isEn ? rutaEn(rutaEs) : rutaEs);
 if (!Astro.site) {
   throw new Error('astro.config.mjs debe definir `site`: de ahí salen canonical, hreflang y sitemap.');
 }
 const siteOrigin = Astro.site.origin;
 const esHref = `${siteOrigin}${basePath}`;
-const enHref = `${siteOrigin}/en${basePath === '/' ? '/' : basePath}`;
+const enHref = `${siteOrigin}${rutaEn(basePath)}`;
 const canonicalHref = isEn ? enHref : esHref;
 const waSaludo = isEn
   ? `Hello, every project begins with a conversation — this is Alonso & Campos ${siteOrigin}/`
@@ -239,6 +262,21 @@ const isActive = (p: string) => sinBarra(basePath) === sinBarra(p);
       flex-wrap: wrap;
       gap: 0.5rem;
     }
+    .footer-legal-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .footer-legal {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+    }
+    .footer-legal a {
+      color: rgba(255,255,255,0.45);
+      transition: color 0.2s;
+    }
+    .footer-legal a:hover { color: var(--gold); }
+    .legal-sep { margin: 0 0.5rem; }
     .footer-social {
       display: flex;
       gap: 1rem;
@@ -380,9 +418,6 @@ const isActive = (p: string) => sinBarra(basePath) === sinBarra(p);
         <li><a href={`${navBase}/nosotros/`}>{isEn ? 'Team & values' : 'Equipo y valores'}</a></li>
         <li><a href={`${navBase}/portafolio/`}>{isEn ? 'Portfolio' : 'Portafolio'}</a></li>
         <li><a href={`${navBase}/contacto/`}>{isEn ? 'Contact' : 'Contacto'}</a></li>
-        {/* TODO Aviso legal: crear src/pages/aviso-legal.astro y src/pages/en/aviso-legal.astro
-            y enlazarlos aquí (/aviso-legal/ y /en/aviso-legal/).
-            PENDIENTE DE DATOS: domicilio social, NIF y datos registrales. No redactar sin ellos. */}
       </ul>
     </div>
     <div class="footer-col">
@@ -394,7 +429,14 @@ const isActive = (p: string) => sinBarra(basePath) === sinBarra(p);
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2026 Alonso & Campos Advisors S.L. {isEn ? 'All rights reserved.' : 'Todos los derechos reservados.'}</span>
+    <div class="footer-legal-block">
+      <span>© 2026 Alonso & Campos Advisors S.L. {isEn ? 'All rights reserved.' : 'Todos los derechos reservados.'}</span>
+      <nav class="footer-legal" aria-label={isEn ? 'Legal links' : 'Enlaces legales'}>
+        <a href={enIdioma('/privacidad/')}>{isEn ? 'Privacy Policy' : 'Política de Privacidad'}</a>
+        <span class="legal-sep" aria-hidden="true">·</span>
+        <a href={enIdioma('/aviso-legal/')}>{isEn ? 'Legal Notice' : 'Aviso Legal'}</a>
+      </nav>
+    </div>
     <div class="footer-social">
       <a href="#" aria-label={isEn ? "Alonso & Campos Advisors on YouTube" : "YouTube de Alonso & Campos Advisors"} class="social-icon" rel="noopener noreferrer">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>

@@ -1,0 +1,88 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { EMAIL, DIRECCION_EN } from '../../lib/contacto';
+
+// El dominio sale de `site` en astro.config.mjs, su fuente única, igual que
+// canonical y sitemap. Aquí no se declara: se lee.
+if (!Astro.site) {
+  throw new Error('astro.config.mjs debe definir `site`: de ahí sale el dominio publicado en esta página.');
+}
+const siteOrigin = Astro.site.origin;
+---
+<Layout
+  title="Legal Notice"
+  description="Identifying details of Alonso & Campos Advisors S.L. under article 10 of the Spanish LSSI-CE."
+  lang="en"
+>
+
+  <section class="page-header">
+    <div class="container">
+      <p class="eyebrow" style="color:var(--gold)">Legal</p>
+      <h1 class="display-title" style="color:var(--white);">Legal <em style="color:var(--gold);">Notice</em></h1>
+      <p style="color:rgba(255,255,255,0.65);font-size:1rem;max-width:560px;margin-top:1rem;line-height:1.75;">
+        In accordance with article 10 of Spanish Law 34/2002 of 11 July, on information society
+        services and electronic commerce (LSSI-CE).
+        Last updated: 22 August 2026.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--white);">
+    <div class="container">
+      <div class="policy-body">
+
+        <div class="policy-block">
+          <h2>Identifying details</h2>
+          <p>
+            The identifying details of the owner of this website are as follows.
+          </p>
+          <table class="policy-table">
+            <tbody>
+              <tr><th>Legal name</th><td>Alonso &amp; Campos Advisors S.L.</td></tr>
+              {/* PENDIENTE: NIF. Sin el dato confirmado la fila no se renderiza. */}
+              <tr><th>Registered address</th><td>{DIRECCION_EN}</td></tr>
+              <tr><th>Email</th><td><a href={`mailto:${EMAIL}`}>{EMAIL}</a></td></tr>
+              <tr><th>Website</th><td>{siteOrigin}</td></tr>
+              {/* PENDIENTE: datos registrales — tomo, folio, hoja y Registro Mercantil de León.
+                  Sin ellos la fila no se renderiza. */}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="policy-block">
+          <h2>Data protection</h2>
+          <p>
+            The processing of personal data is described in the
+            <a href="/en/privacidad/">Privacy Policy</a>.
+          </p>
+        </div>
+
+        <div class="policy-back">
+          <a href="/en/contacto/" class="btn btn-outline">← Back to contact</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .page-header {
+    background: var(--night);
+    padding: 5rem 0 4rem;
+    background-image: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(61,90,128,0.3) 0%, transparent 70%);
+  }
+  .policy-body { max-width: 780px; }
+  .policy-block { margin-bottom: 3rem; }
+  .policy-block h2 { font-family: var(--ff-display); font-size: 1.25rem; color: var(--night); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--gold); display: inline-block; }
+  .policy-block p { color: var(--text); line-height: 1.8; margin-bottom: 0.75rem; }
+  .policy-block a { color: var(--slate); text-decoration: underline; }
+  .policy-block a:hover { color: var(--night); }
+  .policy-table { width: 100%; border-collapse: collapse; margin-top: 0.75rem; font-size: 0.9rem; }
+  .policy-table th, .policy-table td { padding: 0.6rem 1rem; border: 1px solid var(--border); text-align: left; vertical-align: top; line-height: 1.6; }
+  .policy-table th { background: var(--ivory); color: var(--night); font-weight: 600; width: 38%; }
+  .policy-table td { color: var(--text); }
+  .policy-table td a { color: var(--slate); text-decoration: underline; }
+  .policy-back { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+</style>
