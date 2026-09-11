@@ -21,6 +21,12 @@ export const whatsappHref = (texto?: string) =>
 export const DIRECCION_ES = 'Calle Santos Ovejero, 1 — 24008 León, España';
 export const DIRECCION_EN = 'Calle Santos Ovejero, 1 — 24008 León, Spain';
 
+/**
+ * Sedes que la firma declara en su portafolio corporativo (agosto 2026).
+ * La dirección postal sigue siendo la de León; esto es presencia, no domicilio.
+ */
+export const SEDES = 'León · Madrid · Seattle';
+
 /** NIF de la sociedad. Lo publican el aviso legal y la política de privacidad. */
 export const NIF = 'B-88746938';
 

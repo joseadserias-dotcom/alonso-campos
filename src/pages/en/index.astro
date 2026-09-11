@@ -44,23 +44,62 @@ import Layout from '../../layouts/Layout.astro';
             <div class="principle-icon">01</div>
             <div>
               <h3>Advisory + technology</h3>
-              <p>Every recommendation is designed to be executed, measured and sustained. Strategic vision goes hand in hand with digital implementation.</p>
+              <p>We do not separate strategic advice from its digital implementation. Every recommendation is designed to be executed, measured and sustained.</p>
             </div>
           </div>
           <div class="principle">
             <div class="principle-icon">02</div>
             <div>
-              <h3>Forward-looking</h3>
-              <p>Solutions designed for today's reality: real rhythms, scales and capacities. No standardised templates.</p>
+              <h3>Territorial perspective</h3>
+              <p>Solutions calibrated to urban and rural, agricultural and mountain realities: real rhythms, scales and capacities, not rigid theoretical templates.</p>
             </div>
           </div>
           <div class="principle">
             <div class="principle-icon">03</div>
             <div>
               <h3>Dual readability</h3>
-              <p>We speak the language of executive boards and, at the same time, of the teams driving change day to day.</p>
+              <p>We speak the language of executive boards and governing councils and, at the same time, that of institutions and investors, in Spain and internationally.</p>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ─── METHOD: THE 4 CONFLUENCES ─── */}
+  <section class="section" style="background:var(--white);border-top:1px solid var(--border);">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:3.5rem;">
+        <p class="eyebrow">Our method</p>
+        <h2 class="display-title" style="margin:0 auto;">The 4 Confluences</h2>
+        <p class="lead" style="max-width:640px;margin:1.25rem auto 0;">
+          Our own diagnostic and support framework. Four questions that intersect in every project.
+        </p>
+      </div>
+      <div class="confluencias">
+        <div class="confluencia">
+          <div class="confluencia-num">01</div>
+          <h3>Actors</h3>
+          <p class="confluencia-q">Who decides and sustains</p>
+          <p>Governing councils, partners, management and public bodies. We map real power and governance, not the org chart.</p>
+        </div>
+        <div class="confluencia">
+          <div class="confluencia-num">02</div>
+          <h3>Resources</h3>
+          <p class="confluencia-q">What it is executed with</p>
+          <p>Public and private funding, internal capabilities and available data. What makes each decision viable.</p>
+        </div>
+        <div class="confluencia">
+          <div class="confluencia-num">03</div>
+          <h3>Territory</h3>
+          <p class="confluencia-q">Where and for whom</p>
+          <p>Urban or rural, corporate or cooperative, and mountain realities: rhythms, scales and culture. Innovation arrives at the place; it is not imposed.</p>
+        </div>
+        <div class="confluencia">
+          <div class="confluencia-num">04</div>
+          <h3>Technology</h3>
+          <p class="confluencia-q">What amplifies it</p>
+          <p>AI, platforms and data: the lever, not the goal. It amplifies the organisation's judgement; it does not replace it.</p>
         </div>
       </div>
     </div>
@@ -76,26 +115,26 @@ import Layout from '../../layouts/Layout.astro';
       <div class="services-grid">
         <a href="/en/portafolio/#ai" class="service-card">
           <div class="service-num">I</div>
-          <h3>Technology advisory & AI governance</h3>
+          <h3>Technology consulting & AI governance</h3>
           <p>Incorporating artificial intelligence with robust governance, ethics and security criteria. Alignment with the European AI Act.</p>
           <span class="service-link">Learn more →</span>
         </a>
         <a href="/en/portafolio/#digital" class="service-card">
           <div class="service-num">II</div>
           <h3>Digital platforms & solutions</h3>
-          <p>Systemic design applied to digital transformation. Prototypes, MVPs and applied AI model analysis.</p>
+          <p>Design and specification of AI-enabled platforms, prototypes and proofs of concept, and user-guided evolution.</p>
           <span class="service-link">Learn more →</span>
         </a>
         <a href="/en/portafolio/#datos" class="service-card">
           <div class="service-num">III</div>
-          <h3>Data, observatories & knowledge</h3>
-          <p>We turn dispersed information into useful assets. Sectoral observatories, databases and knowledge management.</p>
+          <h3>Data, observatories & territorial knowledge</h3>
+          <p>We turn dispersed information into useful assets for decision-making: databases, sectoral observatories and geographic information systems.</p>
           <span class="service-link">Learn more →</span>
         </a>
-        <a href="/en/portafolio/#idi" class="service-card">
+        <a href="/en/portafolio/#cambio" class="service-card">
           <div class="service-num">IV</div>
-          <h3>R&D&I Projects</h3>
-          <p>Design and management of competitive projects in national and international funding calls.</p>
+          <h3>Transformation & change management</h3>
+          <p>Organisational redesign, governance and change support, including leadership coaching.</p>
           <span class="service-link">Learn more →</span>
         </a>
       </div>
@@ -112,15 +151,11 @@ import Layout from '../../layouts/Layout.astro';
       <div class="audience-grid">
         <div class="audience-item">
           <div class="audience-icon">◈</div>
-          <p>Boards of leading companies</p>
+          <p>Agricultural cooperatives and social financial institutions</p>
         </div>
         <div class="audience-item">
           <div class="audience-icon">◈</div>
-          <p>Foundations and third sector entities</p>
-        </div>
-        <div class="audience-item">
-          <div class="audience-icon">◈</div>
-          <p>Financial agents and social economy</p>
+          <p>Medium and large companies (250+ employees)</p>
         </div>
         <div class="audience-item">
           <div class="audience-icon">◈</div>
@@ -242,6 +277,46 @@ import Layout from '../../layouts/Layout.astro';
   .principle h3 { font-size: 1rem; font-weight: 600; color: var(--night); margin-bottom: 0.4rem; }
   .principle p { color: var(--muted); font-size: 0.925rem; }
 
+  .confluencias {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5px;
+    background: var(--border);
+    border: 1.5px solid var(--border);
+  }
+  .confluencia {
+    background: var(--ivory);
+    padding: 2.25rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .confluencia-num {
+    font-family: var(--ff-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--gold-text);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .confluencia h3 {
+    font-family: var(--ff-display);
+    font-size: 1.35rem;
+    color: var(--night);
+    line-height: 1.2;
+  }
+  .confluencia-q {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--gold-text);
+    margin-bottom: 0.25rem;
+  }
+  .confluencia p:last-child {
+    font-size: 0.95rem;
+    color: var(--text-muted, #555);
+    line-height: 1.6;
+  }
   .services-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -272,7 +347,7 @@ import Layout from '../../layouts/Layout.astro';
 
   .audience-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
   }
   .audience-item {
@@ -319,11 +394,13 @@ import Layout from '../../layouts/Layout.astro';
   @media (max-width: 900px) {
     .two-col { grid-template-columns: 1fr; gap: 3rem; }
     .services-grid { grid-template-columns: 1fr; }
+    .confluencias { grid-template-columns: repeat(2, 1fr); }
     .audience-grid { grid-template-columns: repeat(2, 1fr); }
     .team-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 560px) {
     .audience-grid { grid-template-columns: 1fr; }
+    .confluencias { grid-template-columns: 1fr; }
     .hero-actions { flex-direction: column; }
   }
 </style>

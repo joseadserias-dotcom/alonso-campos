@@ -1,5 +1,5 @@
 ---
-import { EMAIL, whatsappHref, DIRECCION_ES, DIRECCION_EN, MAPA_HREF } from '../lib/contacto';
+import { EMAIL, whatsappHref, DIRECCION_ES, DIRECCION_EN, MAPA_HREF, SEDES } from '../lib/contacto';
 
 export interface Props {
   title: string;
@@ -54,6 +54,10 @@ const isActive = (p: string) => sinBarra(basePath) === sinBarra(p);
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content={description} />
+  {/* Cabeceras de seguridad por <meta>: GitHub Pages no permite cabeceras HTTP personalizadas.
+      frame-ancestors y X-Frame-Options no funcionan vía meta; el resto sí. */}
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
   <title>{title} — Alonso & Campos Advisors</title>
   {noindex ? (
     <meta name="robots" content="noindex" />
@@ -239,6 +243,7 @@ const isActive = (p: string) => sinBarra(basePath) === sinBarra(p);
       gap: 2.5rem;
     }
     .footer-brand p { margin-top: 0.75rem; line-height: 1.7; }
+    .footer-sedes { color: var(--gold); font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; }
     .footer-col h3 {
       font-family: var(--ff-display);
       color: var(--gold);
@@ -414,6 +419,7 @@ const isActive = (p: string) => sinBarra(basePath) === sinBarra(p);
       <p>{isEn
         ? 'Strategic, technology and innovation advisory. Where decisions converge to transform.'
         : 'Asesoramiento estratégico, tecnológico y de innovación. Donde convergen decisiones que transforman.'}</p>
+      <p class="footer-sedes">{SEDES}</p>
     </div>
     <div class="footer-col">
       <h3>{isEn ? 'Navigation' : 'Navegación'}</h3>
