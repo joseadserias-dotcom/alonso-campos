@@ -28,7 +28,7 @@ export const DIRECCION_EN = 'Calle Santos Ovejero, 1 — 24008 León, Spain';
 export const SEDES = 'León · Madrid · Seattle';
 
 /** Página de empresa en LinkedIn — único perfil social de la firma (Eduardo, 11/09/2026). */
-export const LINKEDIN_HREF = 'https://www.linkedin.com/company/alonso-y-campos-advisors';
+export const LINKEDIN_HREF = 'https://www.linkedin.com/company/alonso-campos-advisors/';
 
 /** NIF de la sociedad. Lo publican el aviso legal y la política de privacidad. */
 export const NIF = 'B-88746938';
